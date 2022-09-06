@@ -1,0 +1,31 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="cle_repartition_list">
+      <field name="name">cle repartition</field>
+      <field name="model">cle.repartition</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="cout_achat" />
+          <field name="transport" />
+          <field name="cout_commande" />
+          <field name="frais_livraison" />
+          <field name="marge" />
+        </tree>
+      </field>
+    </record>
+
+
+    
+    <!-- Action -->
+
+    <record model="ir.actions.act_window" id="icc_anal_base_cle_repartition">
+      <field name="name">Clé de repartition</field>
+      <field name="res_model">cle.repartition</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+  </data>
+</odoo>

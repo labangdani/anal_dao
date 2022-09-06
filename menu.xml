@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Top menu item -->
+
+    <menuitem name="Projets"         
+    web_icon="icc_anal_base,static/description/icon.png"
+    id="icc_anal_base" sequence='1'/>
+
+
+
+        <!-- menu opportunité -->
+      <menuitem name="Opportunités" id="icc_anal_base.menu_1" parent="icc_anal_base"  sequence='1' />
+        <menuitem name="Projet" 
+                id="icc_anal_base.menu_1_list" 
+                parent="icc_anal_base.menu_1"
+                action="icc_anal_base_action_window" 
+                sequence='1'
+                groups="group_ing_aff,group_dir_dmc,group_dir_tech,group_dir_gen" />
+        <menuitem name="Detail equipement" 
+                id="icc_anal_base.menu_5_list" 
+                parent="icc_anal_base.menu_1"
+                action="detail_equipement_action_window" 
+                sequence='2'
+                /> 
+        <menuitem name="Devis estimatif" 
+                id="icc_anal_base.menu_6_list" 
+                parent="icc_anal_base.menu_1"
+                action="icc_anal_base_devis_estimatif" 
+                sequence='3'                
+                />
+        <menuitem name="Compte d'exploitation" 
+                id="icc_anal_base.menu_7_list"  
+                parent="icc_anal_base.menu_1"
+                action="icc_anal_base_compte_exploi" 
+                sequence='4' 
+                />  
+                
+        <menuitem name="Critère" 
+                id="icc_anal_base.menu_8_list" 
+                parent="icc_anal_base.menu_1"
+                action="icc_anal_base_critere" 
+                sequence='5'
+                /> 
+
+        <!-- menu parametre -->
+      <menuitem name="Paramètres" id="icc_anal_base.menu_2" parent="icc_anal_base" sequence='2' />
+        <menuitem name="Taux et Impôt" 
+                id="icc_anal_base.menu_2_list" 
+                parent="icc_anal_base.menu_2"
+                action="icc_anal_base_param" 
+                sequence='1'
+                 />
+        <menuitem name="Clé Repartition" 
+                id="icc_anal_base.menu_3_list" 
+                parent="icc_anal_base.menu_2"
+                action="icc_anal_base_cle_repartition" 
+                sequence='2' 
+                />
+        <menuitem name="Devise" 
+                id="icc_anal_base.menu_4_list" 
+                parent="icc_anal_base.menu_2"
+                action="icc_anal_base_devise" 
+                sequence='3' 
+                />
+      <menuitem name="Offre financière" id="icc_anal_base.menu_3" parent="icc_anal_base" sequence='3' />
+        <menuitem name="Taux et Impôt" 
+                id="icc_anal_base.menu_9_list" 
+                parent="icc_anal_base.menu_3"
+                action="icc_anal_base_param" 
+                sequence='1'
+                 />
+          
+
+</odoo>    

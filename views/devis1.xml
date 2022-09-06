@@ -1,0 +1,74 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="devis_estimatif_form">
+      <field name="name">devis</field>
+      <field name="model">devis.estimatif</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group string="Liste des équipements">
+              <field name='equipements' nolabel="1" mode='tree'>  
+                <tree>
+                  <field name="name" />
+                  <field name="fournisseur" />
+                  <field name="prixu" />
+                  <field name="devise_id" />
+                  <field name="quantite" />
+                  <field name="total_fcfa" />
+                  <field name="local" />
+                  <field name="type_ressource" />
+                </tree>
+              </field>
+            </group>
+            <group string="Dévis estimatif" col="4" name="sale_total">
+              <field name="total_etranger" />
+              <field name="total_local" />
+              <field name="total_general" /> 
+              <field name="total_transport" />           
+              <field name="total_tva" />
+              <field name="total_air" />
+              <field name="total_ttc" />
+              <field name="net_gagner" />        
+            </group> 
+            <div class="oe_clear"/>
+          </sheet>
+        </form> 
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="devis_estimatif_tree">
+      <field name="name">Dévis estimatif</field>
+      <field name="model">devis.estimatif</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+        </tree>
+      </field>
+    </record>
+
+    
+    <!-- Action -->
+
+    <record model="ir.actions.act_window" id="icc_anal_base_devis_estimatif">
+      <field name="name">Devis estimatif</field>
+      <field name="res_model">devis.estimatif</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="icc_anal_base_devis_tree">
+      <field name="act_window_id" ref="icc_anal_base_devis_estimatif" />
+      <field name="sequence" eval="10" />
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="devis_estimatif_tree" />
+    </record>
+
+    <!-- <record model="ir.actions.act_window.view" id="icc_anal_base_devis_form">
+      <field name="act_window_id" ref="icc_anal_base_devis_estimatif" />
+      <field name="sequence" eval="20" />
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="devis_estimatif_form" /> 
+    </record> -->
+
+  </data>
+</odoo>

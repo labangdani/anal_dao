@@ -1,0 +1,28 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="devise_list">
+      <field name="name">devise</field>
+      <field name="model">devise</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="taux" />
+        </tree>
+      </field>
+    </record>
+
+
+    
+    <!-- Action -->
+
+    <record model="ir.actions.act_window" id="icc_anal_base_devise">
+      <field name="name">Devises</field>
+      <field name="res_model">devise</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+  </data>
+</odoo>

@@ -1,0 +1,183 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+
+    <record model="ir.ui.view" id="icc_anal_base_form">
+      <field name="name">projet</field> 
+      <field name="model">anal.projet</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>   
+            <button name="set_to_draft" states="6cancel,8win,9lost,7reported" string="R&#233;initialiser" type="object" class="oe_highlight" />                     
+            <button name="set_to_analyse" states="0draft" string="Analyser" type="object" class="oe_highlight" />
+            <button name="set_to_evaluate" states="1analyse" string="Evaluer" type="object" class="oe_highlight" />
+            <button name="set_to_submit" states="2evaluate" string="Go" type="object" class="oe_highlight" />
+            <button name="set_to_cancel" states="2evaluate" string="No Go" type="object" class="oe_highlight" />
+            <button name="%(anal_projet_submit_action)d" states="3submit" string="Soumettre" type="action" class="oe_highlight" />
+            <button name="set_to_qualified" states="4submited" string="Qualifier" type="object" class="oe_highlight" />
+            <button name="set_to_reported" states="5qualified" string="Reporter" type="object" class="oe_highlight" />
+            <button name="set_to_win" states="5qualified" string="Gagner" type="object" class="oe_highlight" />
+            <button name="set_to_lost" states="5qualified" string="Perdu" type="object" class="oe_highlight" />
+            <button name="set_to_cancel" states="0draft,1analyse,2evaluate,3submit,4submited,5qualified,8win" string="Annuler" type="object" class="oe_highlight" />
+            <button name="createdevis" string="Générer devis" type="object" class="oe_highlight" attrs="{'invisible':[('devis_exist','=',True)]}" />
+            <button name="createcompte" string="Générer compte" type="object" class="oe_highlight" attrs="{'invisible':[('compte_exist','=',True)]}" />
+            <button name="updatedevis" string="Mise à jour devis" type="object" class="oe_highlight" attrs="{'invisible':[('devis_exist','!=',True)]}" />
+            <button name="updatecompte" string="Mise à jour compte" type="object" class="oe_highlight" attrs="{'invisible':[('compte_exist','!=',True)]}" /> 
+            <field name="state" widget="statusbar" statusbar_visible="0draft,1analyse,2evaluate,3submit,4submited,5qualified,7reported,6cancel,8win,9lost" />  
+          </header>
+          <sheet>
+            <group col="4">
+              <field name='name' />
+              <field name='moa' />
+              <field name='objet' /> 
+              <field name="budget" attrs="{'required':[('type_projet', 'in',['aonr','aono'])]}" sum="Budget offre" optional="show" widget="monetary" options="{'currency_field': 'company_currency'}" />
+              <field name='date_depot' />
+              <field name='delai_execution' />
+              <field name='financement' />
+              <field name='date_debut' />
+              <field name="company_currency" invisible="1" />
+              <field name='type_projet' />
+              <field name='achat_dao' states="1analyse,2evaluate,3submit,4submited,5qualified,9lost,8win,7reported" />
+              <field name='caution_soumission' states="1analyse,2evaluate,3submit,4submited,5qualified,9lost,8win,7reported" />
+              <field name='frais_timbre_s' states="1analyse,2evaluate,3submit,4submited,5qualified,9lost,8win,7reported" />
+              <field name='frais_timbre_d' states="1analyse,2evaluate,3submit,4submited,5qualified,9lost,8win,7reported" />
+              <field name='date_submit' states="4submited,5qualified,9lost,8win,7reported" />
+              <field name='devis_exist' invisible="1" />
+              <field name='compte_exist' invisible="1" />
+            </group>       
+            <notebook attrs="{'invisible':[('state','=','0draft')]}">
+              <page string="Détail équipement">
+                <group>
+                  <field name='detail_equipement_ids' nolabel="1" mode='tree' attrs="{'readonly':[('state','not in',['1analyse','2evaluate'])]}">  
+                    <tree>
+                      <field name="name" />
+                      <field name="fournisseur" />
+                      <field name="prixu" />
+                      <field name="devise_id" />
+                      <field name="local" />
+                      <field name="type_ressource" />
+                    </tree>
+                  </field>
+                </group>
+                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                  <field name="totaux_technique" />
+                </group> 
+                <div class="oe_clear"/>
+              </page>
+              <page string="Critère d'évaluation">
+                <field name='critere_evaluation_ids' nolabel="1" mode='tree'  attrs="{'readonly':[('state','not in',['1analyse','2evaluate'])]}">
+                </field>
+              </page>
+              <page string="Grille de notation">
+                  <group >
+                    <field name="grille_notation_ids" nolabel="1" mode="tree" attrs="{'readonly':[('state','not in',['1analyse','2evaluate'])]}">
+                      <tree>
+                        <field name="critere_ids" />
+                        <field name="sous_total_note" />
+                        <field name="sous_total_ponderation" />
+                      </tree>
+                    </field>         
+                  </group> 
+                  <group name="note_group" col="6" class="mt-2 mt-md-0">
+                    <group colspan="4">
+                      <field name="note" nolabel="1" placeholder="Terms and conditions..."/>
+                    </group>
+                    <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                      <field name="totaux_critere" />
+                      <field name="total_ponderation"/>
+                    </group>
+                      <div class="oe_clear"/>
+                  </group>
+              </page>
+            </notebook>   
+          </sheet> 
+          <div class = "oe_chatter"> 
+            <field name = "message_follower_ids" widget = "mail_followers" /> 
+            <field name = "message_ids" widget = "mail_thread" /> 
+          </div>  
+        </form>
+      </field>
+    </record>
+
+
+    
+
+    <record id="anal_project_view_kanban" model="ir.ui.view">
+      <field name="name">anal.project.kanban</field>
+      <field name="model">anal.projet</field>
+      <field name="arch" type="xml">
+        <kanban default_group_by="state" class="o_kanban_small_column o_opportunity_kanban" archivable="false" sample="1">
+          <field name="state" options='{"order_by_tooltip": {"requirements": "state"}}'/>                   
+          <field name='name' /> 
+          <field name='budget' />
+          <field name='moa' />
+          <progressbar field="state" colors='{"0draft": "success", "1analyse": "margenta","2evaluate":"pink","3submit":"purple","5qualified": "warning", "6cancel":"orange", "4submited": "danger", "8win":"primary"}' sum_field="budget" help="This bar allows to filter the opportunities based on scheduled activities."/>
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                <div>
+                  <strong class="o_kanban_record_title"><span><field name="name"/></span></strong>
+                </div>
+                <div>
+                  <span class="o_kanban_record_subtitle"><field name="moa"/></span>
+                </div>
+                <div class="o_kanban_record_bottom">
+                  <div class="oe_kanban_bottom_left">
+                    <field name="priority" widget="priority"/>
+                  </div>  
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+   
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="icc_anal_base_action_window">
+      <field name="name">projet</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">anal.projet</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+
+    <record model="ir.actions.act_window.view" id="icc_anal_base_view_form">
+      <field name="act_window_id" ref="icc_anal_base_action_window" />
+      <field name="sequence" eval="20" />
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="icc_anal_base_form" />
+    </record>
+    
+
+    <record model="ir.actions.act_window.view" id="icc_anal_base_view_kanban">
+      <field name="act_window_id" ref="icc_anal_base_action_window" />
+      <field name="sequence" eval="18" />
+      <field name="view_mode">kanban</field>
+      <field name="view_id" ref="anal_project_view_kanban" />
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="icc_anal_base.action_server">
+      <field name="name">icc_anal_base server</field>
+      <field name="model_id" ref="model_icc_anal_base_icc_anal_base"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+
+  </data>
+</odoo>

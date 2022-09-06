@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+      <!-- Main template -->
+      <template id="report_saleorder">
+          <t t-call="web.html_container">
+              <t t-foreach="docs" t-as="doc">
+                  <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+              </t>
+          </t>
+      </template>
+
+      <!-- Translatable template -->
+      <template id="report_saleorder_document">
+          <!-- Re-browse of the record with the partner lang -->
+          <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+          <t t-call="web.external_layout">
+              <div class="page">
+                  <div class="oe_structure"/>
+                  <div class="row">
+                      <div class="col-6">
+                          <strong t-if="doc.partner_shipping_id == doc.partner_invoice_id">Invoice and shipping address:</strong>
+                          <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoice address:</strong>
+                          <div t-field="doc.partner_invoice_id" t-options="{&quot;no_marker&quot;: True}"/>
+                            <t t-call="web.external_layout" t-lang="en_US">
+                            
+                  <div class="oe_structure"/>
+              </div>
+          </t>
+      </template>
+    </data>
+</odoo>

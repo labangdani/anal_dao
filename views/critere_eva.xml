@@ -1,0 +1,56 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="critere_evaluation_tree">
+      <field name="name">Critère d'évaluation</field>
+      <field name="model">critere.evaluation</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="categorie" />
+            <field name="total" />
+            <field name="critere_ids" />
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="critere_evaluation_form">
+      <field name="name">Critère d'évaluation</field>
+      <field name="model">critere.evaluation</field>
+      <field name="arch" type="xml">
+        <form>
+          <group >
+            <field name="categorie" />
+            <field name="total" />            
+            <field name="critere_ids">
+            </field>
+          </group>  
+        </form>
+      </field>
+    </record>
+
+    
+    <!-- Action -->
+
+    <record model="ir.actions.act_window" id="icc_anal_base_critere_evaluation">
+      <field name="name">Critère d'évaluation</field>
+      <field name="res_model">critere.evaluation</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="icc_anal_base_critere_tree">
+      <field name="act_window_id" ref="icc_anal_base_critere_evaluation" />
+      <field name="sequence" eval="10" />
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="critere_evaluation_tree" />
+    </record>
+
+    <record model="ir.actions.act_window.view" id="icc_anal_base_critere_form">
+      <field name="act_window_id" ref="icc_anal_base_critere_evaluation" />
+      <field name="sequence" eval="20" />
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="critere_evaluation_form" />
+    </record>
+
+  </data>
+</odoo>

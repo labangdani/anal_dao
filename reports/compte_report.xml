@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_compte_exploi">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                 <!--********************************************* le style ************************  -->
+
+                        <style type="text/css">
+                            .tg  {border-collapse:collapse;border-spacing:0;}
+                            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                            .tg .tg-sx07{font-style:italic;border-color:#000000;text-align:center;vertical-align:top}
+                            .tg .tg-wp8o{border-color:#000000;text-align:center;vertical-align:top}
+                            .tg .tg-vjp8{background-color:#3f70d9;border-color:#000000;text-align:center;vertical-align:top}
+                            .tg .tg-3slz{background-color:#8eaced;border-color:#000000;text-align:center;vertical-align:top}
+                            .tg .tg-8sz7{background-color:#8eaced;color:#000000;border-color:#000000;text-align:center;vertical-align:top}
+                        </style>
+
+
+                        <style type="text/css">
+                            .tg  {border-collapse:collapse;border-spacing:0;}
+                            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                            .tg .tg-sx07{font-style:italic;border-color:#000000;text-align:center;vertical-align:top}
+                            .tg .tg-wp8o{border-color:#000000;text-align:center;vertical-align:top}
+                            .tg .tg-vjp8{background-color:#3f70d9;border-color:#000000;text-align:center;vertical-align:top}
+                            .tg .tg-3slz{background-color:#8eaced;border-color:#000000;text-align:center;vertical-align:top}
+                            .tg .tg-8sz7{background-color:#8eaced;color:#000000;border-color:#000000;text-align:center;vertical-align:top}
+                        </style>
+
+                 <!-- *********************************************fin du style ********************* -->
+               
+                        <table class="table table-condensed table-bordered" style="width: 100%;border-collapse: collapse;border: 1px solid black;">
+                            <tr>
+                                <th style="border: 1px solid black; background-color: #57f269;" colspan="9"><center>DETAILS EQUIPEMENTS</center></th>
+                            </tr>
+                            <t t-foreach="o.projet_id" t-as="doc_project">   
+                                <tr>
+                                    <td><span style="font-weight:bold; width: 11%; border: 1px solid black; background-color: ##99f2c2;"> Maitre d'ouvrage</span></td>
+                                    <td style="border: 1px solid black;"><span t-esc="doc_project['moa']"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight:bold; width: 11%; border: 1px solid black;"> Intitulé du projet</span></td>
+                                    <td style="border: 1px solid black;"><span t-esc="doc_project['objet']"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight:bold; width: 11%; border: 1px solid black;"> Date limite de dépôt</span></td>
+                                    <td style="border: 1px solid black;"><span t-esc="doc_project['date_depot']"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight:bold; width: 11%; border: 1px solid black;"> Financement</span></td>
+                                    <td style="border: 1px solid black;"><span t-esc="doc_project['financement']"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span style="font-weight:bold; width: 11%; border: 1px solid black;"> Date d'exécution</span></td>
+                                    <td style="border: 1px solid black;"><span t-esc="doc_project['delai_execution']"/></td>
+                                </tr>
+                            </t>
+                        </table>
+
+
+                        <br/>
+                        <table class="table table-condensed table-bordered" style="width: 100%;border-collapse: collapse;border: 1px solid black;">
+                            <thead style=" background-color: ##99f2c2;">
+                                <tr>
+                                    <th style="border: 1px solid black; background-color: #57f269;" colspan="9"><center>DETAILS EQUIPEMENTS</center></th>
+                                </tr>
+                                <tr>
+                                    <th name="th_equipement" class="text-center" style="width: 11%;border: 1px solid black; background-color: #9ff5a9;">
+                                        <span style="font-weight:bold" rowspan="2">Equipements</span>
+                                    </th>
+                                    <th name="th_fournisseur" class="text-center" style="width: 11%;border: 1px solid black; background-color: #9ff5a9;">
+                                        <span style="font-weight:bold">Fournisseurs</span>
+                                    </th>
+                                    <th name="th_prixu" class="text-center" style="width: 11%;border: 1px solid black; background-color: #9ff5a9;">
+                                        <span style="font-weight:bold">Prix unitaire</span>
+                                    </th>
+                                    <th name="th_devise_id" class="text-center" style="width: 11%;border: 1px solid black; background-color: #9ff5a9;">
+                                        <span style="font-weight:bold">Monnaie</span>
+                                    </th>
+                                    <th name="th_quantite" class="text-center" style="width: 11%;border: 1px solid black; background-color: #9ff5a9;">
+                                        <span style="font-weight:bold">Quantité</span>
+                                    </th>
+                                    <th name="th_total_fcfa" class="text-center" style="width: 11%;border: 1px solid black; background-color: #9ff5a9;">
+                                        <span style="font-weight:bold">Prix total en FCFA</span>
+                                    </th>
+                                </tr> 
+                            </thead> 
+                            <t t-foreach="o.equipements" t-as="line">
+                                <tbody style="border: 1px solid black;">
+                                    <tr style="border: 1px solid black;">
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.name"/> 
+                                        </td> 
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.fournisseur"/> 
+                                        </td>
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.prixu"/> 
+                                        </td>
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.devise_id"/> 
+                                        </td> 
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.quantite"/> 
+                                        </td>
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.total_fcfa"/> 
+                                        </td> 
+                                    </tr>
+                                </tbody>    
+                            </t>     
+                        </table>
+
+
+ <!-- ********************************************************************************************************* -->
+                        
+                        <br/>
+                        <table class="table table-condensed table-bordered" style="width: 100%;border-collapse: collapse;border: 1px solid black;">
+                            <thead style=" background-color: #edebe6;">
+                                <tr>
+                                    <th style="border: 1px solid black; background-color: #3f70d9;" colspan="9"><center>DEVIS ESTIMATIF</center></th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center" style="width: 11%;border: 1px solid black;background-color: #8eaced;">Transport total</th>
+                                    <th class="text-center" style="width: 11%;border: 1px solid black;background-color: #8eaced;">Sous total 1 : achat etranger</th>
+                                    <th class="text-center" style="width: 11%;border: 1px solid black;background-color: #8eaced;">Sous total 2 : achat local</th>
+                                    <th class="text-center" style="width: 11%;border: 1px solid black;background-color: #8eaced;">Total général</th>
+                                    <th class="text-center" style="width: 11%;border: 1px solid black;background-color: #8eaced;">Total TVA</th>
+                                    <th class="text-center" style="width: 11%;border: 1px solid black;background-color: #8eaced;">Total AIR</th>
+                                    <th class="text-center" style="width: 11%;border: 1px solid black;background-color: #8eaced;">Total TTC</th>
+                                    <th class="text-center" style="width: 11%;border: 1px solid black;background-color: #8eaced;">Net à percevoir</th>
+                                </tr>
+                            </thead>
+                            <t t-if="o.devis" t-as="line">
+                                <!--<tbody style="border: 1px solid black;">
+                                     <tr style="border: 1px solid black;">
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.total_transport"/> 
+                                        </td> 
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.total_etranger"/> 
+                                        </td>
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.total_local"/> 
+                                        </td>
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.total_general"/> 
+                                        </td> 
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.total_tva"/> 
+                                        </td>
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.total_fcfa"/> 
+                                        </td> 
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.total_air"/> 
+                                        </td>
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.total_ttc"/> 
+                                        </td>
+                                        <td style="border: 1px solid black;"> 
+                                            <span t-field="line.net_gagner"/> 
+                                        </td>
+                                    </tr>
+                                </tbody>     -->
+                            </t>     
+                        </table>
+                    </div>
+                    </t> 
+                </t>
+            </t>
+            <div class="footer">
+                <div class="row">
+                    <center><span>Page </span><span class="page" /> sur <span class="topage" /></center>
+                </div>
+            </div>
+    </template>
+</odoo>

@@ -1,0 +1,37 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="grille_critere_form">
+      <field name="name">Grille de critère</field>
+      <field name="model">grille.critere</field>
+      <field name="arch" type="xml">
+        <form>
+          <group >
+            <field name="critere_ids" domain="[('is_essentiel','=','True')]" />
+            <field name="sous_total_note" />
+            <field name="sous_total_ponderation" />
+            <field name="notation_ids" />
+          </group>  
+        </form>
+      </field>
+    </record>
+    
+
+
+    <!-- Action notation -->
+
+    <record model="ir.actions.act_window" id="icc_anal_base_grille_critere">
+        <field name="name">Grille critère</field>
+        <field name="res_model">grille.critere</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="grille_critere_form_action">
+        <field name="act_window_id" ref="icc_anal_base_grille_critere" />
+        <field name="sequence" eval="20" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="grille_critere_form" />
+    </record>
+
+  </data>
+</odoo>    

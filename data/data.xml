@@ -1,0 +1,126 @@
+<odoo>
+    
+    <record id="object0" model="parametre">
+        <field name="name">Taux douane</field>
+        <field name="value1">40</field>
+        <field name="value2">40</field>
+        <field name="value3">30</field>
+    </record>  
+
+    <record id="object1" model="parametre">
+        <field name="name">Taux de marge brute</field>
+        <field name="value1">18</field> 
+        <field name="value2">45</field>
+        <field name="value3">45</field> 
+    </record>
+
+    <record id="object2" model="parametre">
+        <field name="name">Taux frais de transport</field>
+        <field name="value1">5</field>
+        <field name="value2">5</field>
+        <field name="value3">10</field>
+    </record>    
+
+    <record id="object3" model="parametre">
+        <field name="name">Taux frais d'approche</field>
+        <field name="value1">2</field>
+        <field name="value2">5</field>
+        <field name="value3">2</field>
+    </record>
+
+    <record id="object4" model="parametre">
+        <field name="name">Taux jetons de présence réception</field>
+        <field name="value1">2</field>
+        <field name="value2">2</field>
+        <field name="value3">0.50</field> 
+    </record> 
+
+    <record id="object5" model="parametre">
+        <field name="name">Imprevus</field>
+        <field name="value1">1</field>
+        <field name="value2">1</field>
+        <field name="value3">0.50</field>
+    </record>
+
+    <record id="object6" model="parametre">
+        <field name="name">TVA</field>    
+        <field name="value1">19.25</field>
+    </record> 
+
+    <record id="object7" model="parametre">
+        <field name="name">IR</field>
+        <field name="value1">2.20</field>
+        <field name="value2">5.50</field>
+    </record>
+
+    <record id="cle_repartition1" model="cle.repartition">
+        <field name="cout_achat">60.00</field>
+        <field name="transport">10.00</field>
+        <field name="cout_commande">4.00</field>
+        <field name="frais_livraison">6.00</field>
+        <field name="marge">20.00</field>
+        <field name="materiel">true</field>
+        <field name="logiciel">false</field>
+    </record>
+
+    <record id="cle_repartition2" model="cle.repartition">
+        <field name="cout_achat">62.50</field>
+        <field name="transport">0.00</field>
+        <field name="cout_commande">2.50</field>
+        <field name="frais_livraison">0.00</field>
+        <field name="marge">35.00</field>
+        <field name="materiel">false</field>
+        <field name="logiciel">true</field>    
+    </record>
+
+    <record id="devise1" model="devise">
+        <field name="name">FCFA</field>    
+        <field name="taux">1</field>
+    </record>
+
+    <record id="devise2" model="devise">
+        <field name="name">EURO</field>    
+        <field name="taux">700</field>
+    </record>
+
+    <record id="devise3" model="devise">
+        <field name="name">DOLLARS</field>    
+        <field name="taux">600</field>
+    </record>
+
+    <record id="devise4" model="devise">
+        <field name="name">LIVRE STERLLING</field>    
+        <field name="taux">750</field>
+    </record>
+
+    <record id="devise5" model="devise">
+        <field name="name">YUAN CHINOIS</field>    
+        <field name="taux">90</field>
+    </record>
+
+    <record id="devise6" model="devise">
+        <field name="name">DIRHAM MAROCAIN</field>    
+        <field name="taux">65</field>
+    </record>
+
+    <record id="devise7" model="devise">
+        <field name="name">DOLLAR CAD</field>    
+        <field name="taux">500</field>
+    </record>
+
+    <record id="devise8" model="devise">
+        <field name="name">ROUPIE INDIENNE</field>    
+        <field name="taux">8</field>
+    </record>
+
+    <record id="devise9" model="devise">
+        <field name="name">RAND</field>    
+        <field name="taux">33</field>
+    </record>
+
+    <record id="devise10" model="devise">
+        <field name="name">ROUPIE</field>    
+        <field name="taux">8</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_devis_estimatif">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure">
+                            <!-- <div class="row">
+                                <div class="col-xs-8">
+                                    <table class="table table-condensed" style="border: 3px solid black !important;">
+                                        <tr>
+                                            <td width="60%">
+                                                <table>
+                                                    <tr>
+                                                        <td colspan="3" class="text-center">
+                                                            <span t-field="o.name"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div> -->
+                            <t t-if="o.equipements">
+                                <span>Détails équipements</span>
+                                <table class="table table-sm o_main_table" name="equipements">
+                                    <thead>
+                                        <tr>
+                                            <th name="th_equipement" class="text-left">
+                                                <span>Equipements</span>
+                                            </th>
+                                            <th name="th_fournisseur" class="text-left">
+                                                <span>Fournisseurs</span>
+                                            </th>
+                                            <th name="th_prixu" class="text-left">
+                                                <span>Prix unitaire</span>
+                                            </th>
+                                            <th name="th_devise_id" class="text-left">
+                                                <span>Monnaie</span>
+                                            </th>
+                                            <th name="th_quantite" class="text-left">
+                                                <span>Quantité</span>
+                                            </th>
+                                            <th name="th_total_fcfa" class="text-left">
+                                                <span>Prix total en FCFA</span>
+                                            </th>
+                                        </tr> 
+                                    </thead> 
+                                    <t t-foreach="o.equipements" t-as="line">
+                                        <tr>
+                                            <td> 
+                                                <span t-field="line.name"/> 
+                                            </td> 
+                                            <td> 
+                                                <span t-field="line.fournisseur"/> 
+                                            </td>
+                                            <td> 
+                                                <span t-field="line.prixu"/> 
+                                            </td>
+                                            <td> 
+                                                <span t-field="line.devise_id"/> 
+                                            </td> 
+                                            <td> 
+                                                <span t-field="line.quantite"/> 
+                                            </td>
+                                            <td> 
+                                                <span t-field="line.total_fcfa"/> 
+                                            </td> 
+                                        </tr>
+                                    </t>     
+                                    <tr>
+                                        <td colspan="2">
+                                            Total
+                                        </td>
+                                        <td colspan="2">
+                                            <t t-esc="o.total_transport"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </t>                                            
+                        </div>                        
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

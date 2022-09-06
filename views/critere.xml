@@ -1,0 +1,56 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="critere_tree">
+      <field name="name">Critère</field>
+      <field name="model">critere</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="evaluation" />
+          <field name="observation" /> 
+        </tree>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="critere_form">
+      <field name="name">Critère</field>
+      <field name="model">critere</field>
+      <field name="arch" type="xml">
+        <form>
+          <group >
+            <field name="name" />
+            <field name="evaluation" />
+            <field name="observation" />
+            <field name="is_essentiel" /> 
+          </group>  
+        </form>
+      </field>
+    </record>
+
+    
+    <!-- Action critère -->
+
+    <record model="ir.actions.act_window" id="icc_anal_base_critere">
+      <field name="name">Critères</field>
+      <field name="res_model">critere</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="critere_tree_action">
+      <field name="act_window_id" ref="icc_anal_base_critere" />
+      <field name="sequence" eval="10" />
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="critere_tree" />
+    </record>
+
+    <record model="ir.actions.act_window.view" id="critere_form_action">
+      <field name="act_window_id" ref="icc_anal_base_critere" />
+      <field name="sequence" eval="20" />
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="critere_form" />
+    </record>
+
+  </data>
+</odoo>

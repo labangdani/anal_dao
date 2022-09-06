@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="login" inherit_id="web.login" name="Custom Login" >
+        <xpath expr="//button[@name='redirect']" position="replace" />
+    </template>
+</odoo>

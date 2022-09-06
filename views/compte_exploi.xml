@@ -1,0 +1,129 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="compte_exploi_tree">
+      <field name="name">Compte d'exploitation</field>
+      <field name="model">compte.exploi</field>
+      <field name="arch" type="xml">
+        <tree>
+            <field name="name" />
+            <field name="save_marche" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- <record model="ir.ui.view" id="compte_exploi_form">
+      <field name="name">Compte d'exploitation</field>
+      <field name="model">compte.exploi</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="devis_id" />
+            <field name="achat_dao" />
+            <field name="caution_soumission" />
+            <field name="frais_timbre_s" />
+            <field name="frais_timbre_d" />
+            <field name="save_marche" />
+            <field name="frais_caution_def" />
+            <field name="frais_caution_gar" />
+            <field name="frais_approche" />
+            <field name="jetons" />
+            <field name="imprevu" />
+            <field name="total_autre_charge" />
+            <field name="achat_total" />
+            <field name="total_charge" />
+            <field name="taux_marge" />            
+          </group>  
+        </form>
+      </field>
+    </record> -->
+
+    <record model="ir.ui.view" id="compte_exploi_form">
+      <field name="name">Compte d'exploitation</field>
+      <field name="model">compte.exploi</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group string="Informations générales">
+              <field name='projet_id' nolabel="1" mode='tree'>  
+                <tree>
+                  <field name='name' />
+                  <field name='moa' />
+                  <field name='objet' /> 
+                  <field name="budget" sum="Budget offre" optional="show" widget="monetary" options="{'currency_field': 'company_currency'}" />
+                  <field name='date_depot' />
+                  <field name='delai_execution' />
+                  <field name='financement' />
+                  <field name='date_debut' />
+                  <field name="company_currency" invisible="1" />
+                  <field name='achat_dao' />
+                  <field name='caution_soumission' />
+                  <field name='frais_timbre_s' />
+                  <field name='frais_timbre_d'/>
+                </tree>
+              </field>
+            </group>
+            <group string="Liste des achats">
+              <field name='equipements' nolabel="1" mode='tree'>  
+                <tree>
+                  <field name="name" />
+                  <field name="total_fcfa" />
+                </tree>
+              </field>
+            </group>
+            <group string="Dévis estimatif" col="4" name="sale_total">
+              <field name='devis' nolabel="1" mode='tree'>
+                <tree>  
+                  <field name="total_etranger" />
+                  <field name="total_local" />
+                  <field name="total_general" /> 
+                  <field name="total_transport" />           
+                  <field name="total_ttc" />
+                </tree>
+              </field>           
+            </group> 
+            <group string="Compte d'exploitation" col="4" name="sale_total">
+              <field name="save_marche" />
+              <field name="frais_caution_def" />
+              <field name="frais_caution_gar" />
+              <field name="frais_approche" />
+              <field name="jetons" />
+              <field name="imprevu" />
+              <field name="total_autre_charge" />
+              <field name="achat_total" />
+              <field name="total_charge" />
+              <field name="taux_marge" />
+              <field name="marge" />
+            </group> 
+            <div class="oe_clear"/>
+          </sheet>
+        </form> 
+      </field>
+    </record>
+
+    
+    <!-- Action -->
+
+    <record model="ir.actions.act_window" id="icc_anal_base_compte_exploi">
+      <field name="name">Compte d'exploitation</field>
+      <field name="res_model">compte.exploi</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="icc_anal_base_compte_tree">
+      <field name="act_window_id" ref="icc_anal_base_compte_exploi" />
+      <field name="sequence" eval="10" />
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="compte_exploi_tree" />
+    </record>
+
+    <record model="ir.actions.act_window.view" id="icc_anal_base_compte_form">
+      <field name="act_window_id" ref="icc_anal_base_compte_exploi" />
+      <field name="sequence" eval="20" />
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="compte_exploi_form" />
+    </record>
+
+
+  </data>
+</odoo>
