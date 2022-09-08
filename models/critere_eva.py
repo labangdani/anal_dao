@@ -2,17 +2,29 @@
 
 from odoo import models, fields, api
   
-class Caracteristique(models.Model):
+class DetailCritere(models.Model):
     _name = 'detail.critere'
     _description = 'détail des critères'
 
-    name = fields.Text(string="designation")
+    name = fields.Char(string="designation", required=True)
+
+class Categorie(models.Model):
+    _name = 'categorie.critere'
+    _description = 'categorie critères'
+
+    name = fields.Char(string="catégorie", required=True) 
 
 class Critere(models.Model):
     _name = 'critere'
     _description = 'critères'
 
-    name = fields.Char(string="Désignation", required=True)
+    name = fields.Char(string="Désignation", required=True)       
+
+class NotationCritere(models.Model):
+    _name = 'notation.critere'
+    _description = 'Notation des critères'
+
+    name = fields.Many2one('critere',string="Désignation", required=True)
     evaluation = fields.Selection([
         ('oui', 'OUI'),
         ('non', 'NON')], string='Evaluation', required=True, index=True)
@@ -26,7 +38,7 @@ class grillenotation(models.Model):
     _name = 'grille.critere'
     _description = 'grille critères essentiels'
 
-    critere_ids = fields.Many2one('critere')
+    critere_ids = fields.Many2one('notation.critere')
     # name = fiels.Char(related='critere_ids.name')
     sous_total_note = fields.Integer(store=True, compute='compute_total_notation')
     sous_total_ponderation = fields.Integer(store=True, compute='compute_total_notation')
@@ -46,13 +58,6 @@ class grillenotation(models.Model):
             })
 
 
-# class criterenotation(models.Model):
-#     _name = 'res.critere'
-#     _description = 'critères notation'
-
-#     name = fields.Text(string='nom', ondelete=False)
-
-
 class Notation(models.Model):
     _name = 'notation'
     _description = 'notation'
@@ -69,16 +74,8 @@ class CritereEvaluation(models.Model):
     _description = 'critère d\'évaluation'
     _rec_name = 'categorie'
 
-    categorie = fields.Selection([
-        ('equipe','Equipe'),
-        ('essentiel','Critères Essentiels'),
-        ('eliminatoire','Critères Eliminatoires'),
-        ('dossier','Dossier administratif'),
-        ('specification','Spécification'),
-        ('offre','Offre financière'),
-        ('garantie','Garantie fourniture'),
-        ('modalite','Modalité de reception')], required=True, string='Catégorie')
-    total = fields.Text(string="Total", store=True, compute='compute_total') 
+    categorie = fields.Many2one('categorie.critere', required=True, string='Catégorie')
+    total = fields.Char(string="Total", store=True, compute='compute_total') 
     critere_ids = fields.Many2many('critere', string="Critères")
     projet_id = fields.Many2one("anal.projet") 
 

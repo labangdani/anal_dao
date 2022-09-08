@@ -1,6 +1,38 @@
 <odoo>
   <data>
 
+        <!-- Action categorie -->
+
+    <record model="ir.ui.view" id="categorie_tree">
+      <field name="name">Categories de critères</field>
+      <field name="model">categorie.critere</field>
+      <field name="arch" type="xml">
+        <tree >
+            <field name="name" />
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="categorie_form">
+      <field name="name">Categories de critères</field>
+      <field name="model">categorie.critere</field>
+      <field name="arch" type="xml">
+        <form string="Type service">
+            <sheet>
+                <field name="name" />
+            </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="icc_anal_base_categorie">
+        <field name="name">Categories de critères</field>
+        <field name="res_model">categorie.critere</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        <!-- Action critère d'évaluation -->
+
     <record model="ir.ui.view" id="critere_evaluation_tree">
       <field name="name">Critère d'évaluation</field>
       <field name="model">critere.evaluation</field>

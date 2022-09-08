@@ -1,113 +1,101 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
 
-    <record model="ir.ui.view" id="detail_equipement_view_tree">
-      <field name="name">détail équipement</field>
-      <field name="model">detail.equipement</field>
+    <!-- Action equipement -->
+
+    <record model="ir.ui.view" id="equipement_tree">
+      <field name="name">Equipements</field>
+      <field name="model">equipement</field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name" />
-          <field name="fournisseur" />
-          <field name="prixu" />
-          <field name="quantite" />
-          <field name="unite" />
-          <field name="devise_id" />
-          <field name="local" />
-          <field name="type_ressource" />
-          <field name="sous_total_equip" />                        
+        <tree >
+            <field name="name" />
         </tree>
       </field>
     </record>
 
-    <record model="ir.ui.view" id="detail_equipement_view_form">
-      <field name="name">détail équipement</field>
-      <field name="model">detail.equipement</field>
+    <record model="ir.ui.view" id="equipement_form">
+      <field name="name">Equipement</field>
+      <field name="model">equipement</field>
       <field name="arch" type="xml">
-        <form>
-          <sheet>
-            <group>
-              <group string="Informations générales">
+        <form string="Type service">
+            <sheet>
                 <field name="name" />
-                <field name="prixu" />
-                <field name="devise_id" />
-                <field name="quantite" />
-                <field name="unite" />
-                <field name="modele" />
-                <field name="reference" />
-                <field name="lien_equipement" />
-                <field name="lien_prix" />
-                <field name="fournisseur" />
-                <field name="local" />
-                <field name="type_ressource" />
-              </group> 
-              <group>
-                <group string="Coût unitaire" >
-                  <field name="pufcfa" />
-                  <field name="transportu" />
-                  <field name="cout_achat" />
-                  <field name="douane_unite" />
-                  <field name="cout_ru" /> 
-                  <field name="marge_brute_u" /> 
-                  <field name="prix_vente_u"  />
-                </group>
-                <group string="Coût global">
-                  <field name="prix_total" />
-                  <field name="total_fcfa" />
-                  <field name="transport_total" />
-                  <field name="douane_total" />
-                  <field name="cout_rt" /> 
-                  <field name="marge_brute_t" /> 
-                  <field name="prix_vente_t"  /> 
-                </group>      
-              </group>      
-            </group>      
-              <notebook>
-                <page string="Caractéristiques">
-                  <group>
-                    <field name='caracteristique_ids' nolabel="1" mode='tree'>
-                      <tree>
-                        <field name="name" />
-                        <field name="note" />
-                        <field name="ponderation" />
-                        <field name="observation" />
-                      </tree>
-                    </field>
-                  </group>
-                  <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
-                    <field name="sous_total_equip" />                        
-                  </group> 
-                  <div class="oe_clear"/>  
-                </page>
-              </notebook>
-            </sheet>   
+            </sheet>
         </form>
       </field>
     </record>
 
-    
-    <!-- Action -->
-
-    <record model="ir.actions.act_window" id="detail_equipement_action_window">
-      <field name="name">Détails équipement</field>
-      <field name="type">ir.actions.act_window</field>
-      <field name="res_model">detail.equipement</field>
-      <field name="view_mode">kanban,tree,form</field>
+    <record model="ir.actions.act_window" id="icc_anal_base_equipement">
+        <field name="name">Equipements</field>
+        <field name="res_model">equipement</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="detail_equipement_tree">
-      <field name="act_window_id" ref="detail_equipement_action_window" />
-      <field name="sequence" eval="10" />
-      <field name="view_mode">tree</field>
-      <field name="view_id" ref="detail_equipement_view_tree" />
+
+    <!-- Action cracteristique -->
+        
+    <record model="ir.ui.view" id="caracteristique_tree">
+      <field name="name">Caracteristique</field>
+      <field name="model">caracteristique.equipement</field>
+      <field name="arch" type="xml">
+        <tree >
+            <field name="name" />
+        </tree>
+      </field>
     </record>
 
-    <record model="ir.actions.act_window.view" id="detail_equipement_form">
-      <field name="act_window_id" ref="detail_equipement_action_window" />
-      <field name="sequence" eval="20" />
-      <field name="view_mode">form</field>
-      <field name="view_id" ref="detail_equipement_view_form" />
+
+    <record model="ir.ui.view" id="caracteristique_form">
+      <field name="name">Caracteristique</field>
+      <field name="model">caracteristique.equipement</field>
+      <field name="arch" type="xml">
+         <form string="Type service">
+                    <sheet>
+                        <field name="name" />
+                    </sheet>
+                </form>
+      </field>
     </record>
 
-  </data>
+    <record model="ir.actions.act_window" id="icc_anal_base_caracteristique">
+        <field name="name">Carateristiques</field>
+        <field name="res_model">caracteristique.equipement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        <!-- Action type de DAO -->
+
+        <record id="marche_type_dao_view_form" model="ir.ui.view">
+            <field name="name">marche_config_form</field>
+            <field name="model">type.dao</field>
+            <field name="arch" type="xml">
+                <form string="Type DAO">
+                    <sheet>
+                        <group col='2'>
+                            <field name="code" />
+                            <field name="name" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record> 
+
+        <record id="marche_type_dao_view_tree" model="ir.ui.view">
+            <field name="name">type_dao_view_tree</field>
+            <field name="model">type.dao</field>
+            <field name="arch" type="xml">
+                <tree string="Type Dao">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="type_dao_action" model="ir.actions.act_window">
+            <field name="name">Type de DAO</field>
+            <field name="res_model">type.dao</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+ </data>   
 </odoo>

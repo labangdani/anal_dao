@@ -6,13 +6,13 @@ class Caracteristique(models.Model):
     _name = 'caracteristique.equipement'
     _description = 'caracteristique equipement'
 
-    name = fields.Text(string="caractéristique")
+    name = fields.Char(string="caractéristique", required=True)
 
 class Notation(models.Model):
     _name = 'notation.equip'
     _description = 'notation'
 
-    name = fields.Many2one('caracteristique.equipement', string = 'caractéristique')
+    name = fields.Many2one(comodel_name='caracteristique.equipement', string = 'caractéristique')
     note = fields.Integer()
     ponderation = fields.Integer()
     observation = fields.Text()
@@ -21,7 +21,7 @@ class Equipement(models.Model):
     _name = 'equipement'
     _description = 'équipements'
 
-    name = fields.Text(string="équipement")
+    name = fields.Char(string="équipement", required=True)
 
 
 class DetailEquipement(models.Model):
@@ -29,7 +29,7 @@ class DetailEquipement(models.Model):
     _name = 'detail.equipement'
     _description = 'detail equipement'
 
-    name = fields.Many2one("equipement", string="Equipement", required=True)
+    name = fields.Many2one(comodel_name="equipement", string="Equipement", required=True)
     unite = fields.Selection([
         ('u', "Unité"),
         ('ff', "Forfait"),

@@ -3,43 +3,31 @@
     <record id="object0" model="parametre">
         <field name="name">Taux douane</field>
         <field name="value1">40</field>
-        <field name="value2">40</field>
-        <field name="value3">30</field>
     </record>  
 
     <record id="object1" model="parametre">
         <field name="name">Taux de marge brute</field>
-        <field name="value1">18</field> 
-        <field name="value2">45</field>
-        <field name="value3">45</field> 
+        <field name="value1">18</field>  
     </record>
 
     <record id="object2" model="parametre">
         <field name="name">Taux frais de transport</field>
         <field name="value1">5</field>
-        <field name="value2">5</field>
-        <field name="value3">10</field>
     </record>    
 
     <record id="object3" model="parametre">
         <field name="name">Taux frais d'approche</field>
         <field name="value1">2</field>
-        <field name="value2">5</field>
-        <field name="value3">2</field>
     </record>
 
     <record id="object4" model="parametre">
         <field name="name">Taux jetons de présence réception</field>
         <field name="value1">2</field>
-        <field name="value2">2</field>
-        <field name="value3">0.50</field> 
     </record> 
 
     <record id="object5" model="parametre">
         <field name="name">Imprevus</field>
         <field name="value1">1</field>
-        <field name="value2">1</field>
-        <field name="value3">0.50</field>
     </record>
 
     <record id="object6" model="parametre">

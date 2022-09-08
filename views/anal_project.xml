@@ -13,7 +13,7 @@
             <button name="set_to_analyse" states="0draft" string="Analyser" type="object" class="oe_highlight" />
             <button name="set_to_evaluate" states="1analyse" string="Evaluer" type="object" class="oe_highlight" />
             <button name="set_to_submit" states="2evaluate" string="Go" type="object" class="oe_highlight" />
-            <button name="set_to_cancel" states="2evaluate" string="No Go" type="object" class="oe_highlight" />
+            <button name="set_to_aborted" states="2evaluate" string="No Go" type="object" class="oe_highlight" />
             <button name="%(anal_projet_submit_action)d" states="3submit" string="Soumettre" type="action" class="oe_highlight" />
             <button name="set_to_qualified" states="4submited" string="Qualifier" type="object" class="oe_highlight" />
             <button name="set_to_reported" states="5qualified" string="Reporter" type="object" class="oe_highlight" />
@@ -24,20 +24,20 @@
             <button name="createcompte" string="Générer compte" type="object" class="oe_highlight" attrs="{'invisible':[('compte_exist','=',True)]}" />
             <button name="updatedevis" string="Mise à jour devis" type="object" class="oe_highlight" attrs="{'invisible':[('devis_exist','!=',True)]}" />
             <button name="updatecompte" string="Mise à jour compte" type="object" class="oe_highlight" attrs="{'invisible':[('compte_exist','!=',True)]}" /> 
-            <field name="state" widget="statusbar" statusbar_visible="0draft,1analyse,2evaluate,3submit,4submited,5qualified,7reported,6cancel,8win,9lost" />  
+            <field name="state" widget="statusbar" statusbar_visible="0draft,1analyse,2evaluate,3submit,4submited,5qualified,7reported,6cancel,8win,9lost,10aborted" />  
           </header>
           <sheet>
             <group col="4">
               <field name='name' />
               <field name='moa' />
               <field name='objet' /> 
-              <field name="budget" attrs="{'required':[('type_projet', 'in',['aonr','aono'])]}" sum="Budget offre" optional="show" widget="monetary" options="{'currency_field': 'company_currency'}" />
+              <field name="budget" sum="Budget offre" optional="show" widget="monetary" options="{'currency_field': 'company_currency'}" />
               <field name='date_depot' />
               <field name='delai_execution' />
               <field name='financement' />
               <field name='date_debut' />
               <field name="company_currency" invisible="1" />
-              <field name='type_projet' />
+              <field name='type_dao_id' />
               <field name='achat_dao' states="1analyse,2evaluate,3submit,4submited,5qualified,9lost,8win,7reported" />
               <field name='caution_soumission' states="1analyse,2evaluate,3submit,4submited,5qualified,9lost,8win,7reported" />
               <field name='frais_timbre_s' states="1analyse,2evaluate,3submit,4submited,5qualified,9lost,8win,7reported" />
@@ -112,7 +112,7 @@
           <field name='name' /> 
           <field name='budget' />
           <field name='moa' />
-          <progressbar field="state" colors='{"0draft": "success", "1analyse": "margenta","2evaluate":"pink","3submit":"purple","5qualified": "warning", "6cancel":"orange", "4submited": "danger", "8win":"primary"}' sum_field="budget" help="This bar allows to filter the opportunities based on scheduled activities."/>
+          <progressbar field="state" colors='{"0draft": "success", "1analyse": "info","2evaluate":"info","3submit":"info",  "4submited": "info", "5qualified": "info", "6cancel":"info", "8win":"success", "9lost":"warning"}' sum_field="budget" help="This bar allows to filter the opportunities based on scheduled activities."/>
           <templates>
             <t t-name="kanban-box">
               <div t-attf-class="oe_kanban_content oe_kanban_global_click">
@@ -121,6 +121,7 @@
                 </div>
                 <div>
                   <span class="o_kanban_record_subtitle"><field name="moa"/></span>
+                  <span class="o_kanban_record_subtitle"><field name="budget" /></span>
                 </div>
                 <div class="o_kanban_record_bottom">
                   <div class="oe_kanban_bottom_left">

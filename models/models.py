@@ -6,20 +6,24 @@ import hashlib
 
 from odoo import models, fields, api
 
-class projet(models.Model):
-    _name = 'moa.projet'
-    _description = 'maitre d\'ouvrage projet'
+class Marche_type_dao(models.Model):
 
-    name = fields.Text()
+    _name = 'type.dao'
+    _description = 'Type appel d\'offre'
 
-class projet(models.Model):
+    code = fields.Char('Code', required=True)
+    name = fields.Char('Libellé', required=True)   
+
+class Marche(models.Model):
     _name = 'anal.projet'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'anal projet'
 
 
     name = fields.Text(string="Intitulé du projet", required=True)
-    moa = fields.Many2one('res.partner', string='Maitre d\'ouvrage', required=True)
+    type_dao_id = fields.Many2one(string='Type DAO',comodel_name='type.dao',ondelete='restrict', required=True)
+    moa = fields.Many2one('res.partner', string='Maitre d\'ouvrage', required=True, 
+        domain=[('is_ressource','=',False),('is_entity','=', False)])
     objet = fields.Text(string="L'objet de l'appel d'offre")
     date_depot = fields.Datetime(string="Date limite de dépôt", default=fields.Datetime.now)
     delai_execution = fields.Integer(string="Délai d'exécution (en jours)")
@@ -35,7 +39,8 @@ class projet(models.Model):
         ('6cancel', "Annulé"),
         ('7reported', "Reporté"),
         ('8win', "Gagné"),
-        ('9lost', "Perdu")], string='Statut', required=True, default='0draft')
+        ('9lost', "Perdu"),
+        ('10aborted', "Abandonné"),], string='Statut', required=True, default='0draft')
     color = fields.Integer('Color Index', default=0)
     date_submit = fields.Date(string="date de soumission")
     priority = fields.Selection([
@@ -43,12 +48,7 @@ class projet(models.Model):
         ('1', 'Medium'),
         ('2', 'High'),
         ('3', 'Very High')], string='Priorité', index=True, default='0')    
-    type_projet = fields.Selection([
-        ('aami',"Avis d'Appel à Manifestation d'Intérêt"),
-        ('aonr', "Appel d'Offre National Restreint"),
-        ('aono',"Appel d'Offre National Ouvert")], string="Type d'opportunité", required=True)
     
-
     note = fields.Text() 
     totaux_technique = fields.Integer(string="Caractéristiques techniques total", store=True, readonly=True, compute='compute_totaux_technique')
     totaux_critere = fields.Integer(string="Critères essentiels", store=True, readonly=True, compute='_amount_all')
@@ -151,6 +151,9 @@ class projet(models.Model):
         if additional_values:
             self.write(dict(additional_values))
         return res
+
+    def set_to_aborted(self):
+        return self.write({'state' : '10aborted'})    
 
 ############### generate devis estimatif   ###################
     

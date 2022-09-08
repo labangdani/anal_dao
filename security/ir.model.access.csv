@@ -1,7 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
 access_anal_projet_ing_aff,anal_projet,model_anal_projet,group_ing_aff,1,1,1,1
-access_moa_projet_ing_aff,moa_projet,model_moa_projet,group_ing_aff,1,0,0,0
 access_parametre_ing_aff,parametre,model_parametre,group_ing_aff,1,0,0,0
 access_compte_exploi_ing_aff,compte_exploi,model_compte_exploi,group_ing_aff,1,0,0,0
 access_cle_repartition_ing_aff,cle_repartition,model_cle_repartition,group_ing_aff,1,0,0,0
@@ -16,7 +15,10 @@ access_critere_ing_aff,critere,model_critere,group_ing_aff,1,0,0,0
 access_critere_evaluation_ing_aff,critere_evaluation,model_critere_evaluation,group_ing_aff,1,0,0,0
 access_notation_ing_aff,notation,model_notation,group_ing_aff,1,0,0,0
 access_notation_equip_ing_aff,notation_equip,model_notation_equip,group_ing_aff,1,0,0,0
-access_grille_critere_ing_aff,grille_critere_,model_grille_critere,group_ing_aff,1,0,0,0
+access_grille_critere_ing_aff,grille_critere,model_grille_critere,group_ing_aff,1,0,0,0
+access_categorie_critere_ing_aff,categorie_critere,model_categorie_critere,group_ing_aff,1,0,0,0
+access_type_dao_ing_aff,type_dao,model_type_dao,group_ing_aff,1,0,0,0
+access_notation_critere_ing_aff,notation_critere,model_notation_critere,group_ing_aff,1,0,0,0
 
 
 access_anal_projet_dir_tech,anal_projet,model_anal_projet,group_dir_tech,1,1,0,0
@@ -34,4 +36,7 @@ access_critere_dir_tech,critere,model_critere,group_dir_tech,1,1,1,1
 access_critere_evaluation_dir_tech,critere_evaluation,model_critere_evaluation,group_dir_tech,1,1,1,1
 access_notation_dir_tech,notation,model_notation,group_dir_tech,1,1,1,1
 access_notation_equip_dir_tech,notation_equip,model_notation_equip,group_dir_tech,1,1,1,1
-access_grille_critere_dir_tech,grille_critere_,model_grille_critere,group_dir_tech,1,1,1,1
+access_grille_critere_dir_tech,grille_critere,model_grille_critere,group_dir_tech,1,1,1,1
+access_categorie_critere_dir_tech,categorie_critere,model_categorie_critere,group_dir_tech,1,1,1,1
+access_type_dao_dir_tech,type_dao,model_type_dao,group_dir_tech,1,1,1,1
+access_notation_critere_dir_tech,notation_critere,model_notation_critere,group_dir_tech,1,1,1,1
